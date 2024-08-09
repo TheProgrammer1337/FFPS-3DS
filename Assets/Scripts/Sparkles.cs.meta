@@ -1,0 +1,54 @@
+fileFormatVersion: 2
+guid: ebfd5be75152c7148aeffe6b4ac5d6a8
+timeCreated: 1714284341
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - frame1: {fileID: 21300000, guid: 4a694f30e1cd913499448b49510bc531, type: 3}
+  - frame2: {fileID: 21300000, guid: fe7f7cb83fd94ac4babd957fc322c40a, type: 3}
+  - frame3: {fileID: 21300000, guid: 66a721fa458f6b84b9c68f08993f7912, type: 3}
+  - frame4: {fileID: 21300000, guid: 7e93f1788bf11554c839591faeba2104, type: 3}
+  - frame5: {fileID: 21300000, guid: aaff547cf4c0bce43becf1b8d6286996, type: 3}
+  - frame6: {fileID: 21300000, guid: 83d437a37b0252d45addd94fe868d783, type: 3}
+  - frame7: {fileID: 21300000, guid: 908407cbd459a054193b5b9d4ddc98cf, type: 3}
+  - frame8: {fileID: 21300000, guid: 50d2facaaf5ae534b80d5dc635f71af7, type: 3}
+  - frame9: {fileID: 21300000, guid: 0ffe192f7f474e447a4db2b796e0387b, type: 3}
+  - frame10: {fileID: 21300000, guid: aeb5c24b81c93d54999440fe0cb86a4e, type: 3}
+  - frame11: {fileID: 21300000, guid: 1ba7290e76dad994c8a9c05dea3b6d87, type: 3}
+  - frame12: {fileID: 21300000, guid: e0dcb4ef327cf1d499dd0a1d96175890, type: 3}
+  - frame13: {fileID: 21300000, guid: 9c6093d4cfd1324438a661843da597e8, type: 3}
+  - frame14: {fileID: 21300000, guid: 3022cbf8414006c43b5e3baa875f7723, type: 3}
+  - frame15: {fileID: 21300000, guid: 3617c075f12ca2e41be8442af1574458, type: 3}
+  - frame16: {fileID: 21300000, guid: 28923ae5df618a14197bbee6f51f1bc0, type: 3}
+  - frame17: {fileID: 21300000, guid: d1ca7b76d5d51164f9ab9c6f069f5f53, type: 3}
+  - frame18: {fileID: 21300000, guid: c453152017502864fbe8f7045cc8e913, type: 3}
+  - frame19: {fileID: 21300000, guid: 87e643aef7904984ebac59bbb73afad1, type: 3}
+  - frame20: {fileID: 21300000, guid: b503590257c63174ab9766692b9d9940, type: 3}
+  - frame21: {fileID: 21300000, guid: c6014cc95b30475448053979b0d1ab05, type: 3}
+  - frame22: {instanceID: 0}
+  - frame23: {instanceID: 0}
+  - frame24: {instanceID: 0}
+  - frame25: {instanceID: 0}
+  - frame26: {instanceID: 0}
+  - frame27: {instanceID: 0}
+  - frame28: {instanceID: 0}
+  - frame29: {instanceID: 0}
+  - frame30: {instanceID: 0}
+  - frame31: {instanceID: 0}
+  - frame32: {instanceID: 0}
+  - frame33: {instanceID: 0}
+  - frame34: {instanceID: 0}
+  - frame35: {instanceID: 0}
+  - frame36: {instanceID: 0}
+  - frame37: {instanceID: 0}
+  - frame38: {instanceID: 0}
+  - frame39: {instanceID: 0}
+  - frame40: {instanceID: 0}
+  - frame41: {instanceID: 0}
+  - frame42: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

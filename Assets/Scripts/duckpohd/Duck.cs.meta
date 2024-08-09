@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: cbb86ccfca4e4e04da646b6ac0ceb356
+timeCreated: 1712886631
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - mainCamera: {instanceID: 0}
+  - objectToFollow: {instanceID: 0}
+  - Frame1: {fileID: 21300000, guid: b909dd08816fba14b98149025ffaac5c, type: 3}
+  - Frame2: {fileID: 21300000, guid: 66a64504011f7a8408b682a57d11ad49, type: 3}
+  - Frame3: {fileID: 21300000, guid: 2c96ea9998dd51441805df54aa887b31, type: 3}
+  - Frame4: {fileID: 21300000, guid: 32c19687fa9cd3a498eae3cf37489125, type: 3}
+  - Frame5: {fileID: 21300000, guid: 1561b6185a13f534d8b7da4188bb60eb, type: 3}
+  - Frame6: {fileID: 21300000, guid: d1bc9179f5f184b49bce814925100f54, type: 3}
+  - Frame7: {fileID: 21300000, guid: cf99a971eb3f310408f7fca38c6658b8, type: 3}
+  - PickupFrame1: {fileID: 21300000, guid: 1ac17c69e17a3474390c356d86e76e78, type: 3}
+  - PickupFrame2: {fileID: 21300000, guid: 8b61cceedcbbeb74893d9dee52601ea6, type: 3}
+  - PickupFrame3: {fileID: 21300000, guid: 852794fd5bd73c14bba571d49f6cbf9c, type: 3}
+  - PickupFrame4: {fileID: 21300000, guid: 4303998f3842ae444bf9125764611a6f, type: 3}
+  - PickupFrame5: {fileID: 21300000, guid: a25a24ff913b6184f9b9831237163e8d, type: 3}
+  - PickupFrame6: {fileID: 21300000, guid: cb5199eccdf4a0d43925ec0061c58d94, type: 3}
+  - PickupFrame7: {fileID: 21300000, guid: 99917207a1ccfc14d99167228522c8b3, type: 3}
+  - PickupFrame8: {fileID: 21300000, guid: c1a56bdb1239bd247869b234b560d6d0, type: 3}
+  - PickupFrame9: {fileID: 21300000, guid: 9e2204f3875ddac43834deda52c2e596, type: 3}
+  - PickupFrame10: {fileID: 21300000, guid: 999367873687eaa42969a807df187124, type: 3}
+  - PickupFrame11: {fileID: 21300000, guid: fa8f66abec1709246932948a4c6dfe4a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
