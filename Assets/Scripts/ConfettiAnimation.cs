@@ -50,7 +50,7 @@ public class ConfettiAnimation : MonoBehaviour
     {
         if (gameObject.transform.localPosition.y < -130)
         {
-            gameObject.transform.localPosition = new Vector3(Random.Range(-200, 200), 130 + Random.Range(0, 80), 0);
+            gameObject.transform.localPosition = new Vector3(Random.Range(-200, 200), 130);
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         }
     }

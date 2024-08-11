@@ -80,7 +80,7 @@ public class Night : MonoBehaviour
     int tasksdone;
     int position = 1;
     int tasklocation;
-    int selectedmenu;
+    public int selectedmenu;
     bool intaskselection;
     bool insilentvent = true;
     public string activeuse;
@@ -246,7 +246,10 @@ public class Night : MonoBehaviour
                     tasklocation = 0;
                 }
             }
-            selectedmenu += 1;
+            if (selectedmenu < 3)
+            {
+                selectedmenu += 1;
+            }
             if (selectedmenu == 1)
             {
                 MotionDetector.SetActive(true);
@@ -301,12 +304,20 @@ public class Night : MonoBehaviour
         {
             if (intaskselection == false)
             {
-                selectedmenu -= 1;
+                if (selectedmenu > 0)
+                {
+                    selectedmenu -= 1;
+                }
                 if (selectedmenu == 0)
                 {
                     MotionDetector.SetActive(false);
                     TasksMain.SetActive(true);
                     Tasks.SetActive(true);
+                    LoopingTaskCircle.SetActive(false);
+                    TasksAdvertising.SetActive(false);
+                    TasksOrdering.SetActive(false);
+                    TasksMaintenance.SetActive(false);
+
                 }
                 else if (selectedmenu == 1)
                 {
@@ -564,3 +575,4 @@ public class Night : MonoBehaviour
     }
 }
 //END OF HORRIFIC CODE
+// it never ends

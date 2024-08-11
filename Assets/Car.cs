@@ -51,13 +51,16 @@ public class Car : MonoBehaviour
             road.localPosition = new Vector3(-0.25249f, 0);
         }
 
-        if (new N3dsPausedReason() == N3dsPausedReason.ClosingTheLid)
-        {
-            speed += 1;
-        }
+  
     }
 
-
+    void IsAsleep(N3dsPausedReason y)
+    {
+        if (y == N3dsPausedReason.ClosingTheLid)
+        {
+            Destroy(gameObject);
+        }
+    }
     IEnumerator Speedup()
     {
 
