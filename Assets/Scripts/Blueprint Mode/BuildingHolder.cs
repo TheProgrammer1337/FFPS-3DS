@@ -5,27 +5,8 @@ using UnityEngine.UI;
 public class BuildingHolder : MonoBehaviour
 {
     public string BuildingUsed;
+    public Sprite[] DefaultAnimation;
 
-    public Sprite Frame1;
-    public Sprite Frame2;
-    public Sprite Frame3;
-    public Sprite Frame4;
-    public Sprite Frame5;
-    public Sprite Frame6;
-    public Sprite Frame7;
-    public Sprite Frame8;
-    public Sprite Frame9;
-    public Sprite Frame10;
-    public Sprite Frame11;
-    public Sprite Frame12;
-    public Sprite Frame13;
-    public Sprite Frame14;
-    public Sprite Frame15;
-    public Sprite Frame16;
-    public Sprite Frame17;
-    public Sprite Frame18;
-    public Sprite Frame19;
-    public Sprite Frame20;
 
     public string id;
 
@@ -57,7 +38,6 @@ public class BuildingHolder : MonoBehaviour
     public GameObject subselectionsquare;
 
     bool instatsmenu = false;
-
     public Camera mainCamera; // Assign your main camera here
     public Transform objectToFollow; // Assign the object to follow here
     public void OnButtonClick(GameObject button)
@@ -234,52 +214,23 @@ public class BuildingHolder : MonoBehaviour
         {
             if (unused) // Only play the animation if no item is assigned
             {
-                gameObject.GetComponent<Image>().sprite = Frame1;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame2;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame3;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame4;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame5;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame7;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame8;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame9;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame10;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame11;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame12;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame13;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame14;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame15;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame16;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame17;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame18;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame19;
-                yield return new WaitForSeconds(0.02f);
-                gameObject.GetComponent<Image>().sprite = Frame20;
+
+                for (int i = 0; i < DefaultAnimation.Length; i++)
+                {
+                    gameObject.GetComponent<Image>().sprite = DefaultAnimation[i];
+                    yield return new WaitForSeconds(0.02f);
+                }
             }
             else
             {
+
                 // If an item is assigned, stop the animation
                 animationPlaying = false;
+
             }
 
             // Wait for the next frame
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForEndOfFrame();
 
             // If the animation is not playing, break out of the loop
             if (!animationPlaying)

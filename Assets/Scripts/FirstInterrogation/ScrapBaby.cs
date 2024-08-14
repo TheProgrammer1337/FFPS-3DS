@@ -7,8 +7,7 @@ public class ScrapBaby : MonoBehaviour
     Image image;
 
 
-    public Sprite Frame1, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14;
-
+    public Sprite[] LookDownAnim;
     public Sprite Gaze1;
     public Sprite Gaze2;
     public Sprite Gaze3;
@@ -89,77 +88,35 @@ public class ScrapBaby : MonoBehaviour
     IEnumerator LookDown()
     {
         moving = true;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame1;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame2;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame3;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame4;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame5;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame6;
+
         Light1.SetActive(false);
-        Light2.SetActive(false);
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame7;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame8;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame9;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame10;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame11;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame12;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame13;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame14;
+        for (int i = 0; i < LookDownAnim.Length; i++)
+        {
+            gameObject.GetComponent<Image>().sprite = LookDownAnim[i];
+            yield return new WaitForSeconds(0.030f);
+        }
+
         CassetteRecorder.GetComponent<Image>().color = new Color(CassetteRecorder.GetComponent<Image>().color.r, CassetteRecorder.GetComponent<Image>().color.g, CassetteRecorder.GetComponent<Image>().color.b, 1);
         isup = false;
         moving = false;
-
     }
     IEnumerator LookUp()
     {
         moving = true;
 
-        gameObject.GetComponent<Image>().sprite = Frame14;
-
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame13;
-        CassetteRecorder.GetComponent<Image>().color = new Color(CassetteRecorder.GetComponent<Image>().color.r, CassetteRecorder.GetComponent<Image>().color.g, CassetteRecorder.GetComponent<Image>().color.b, 0);
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame12;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame11;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame10;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame9;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame8;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame7;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame6;
-        Light1.SetActive(true);
         Light2.SetActive(true);
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame5;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame4;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame3;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame2;
-        yield return new WaitForSeconds(0.030f);
-        gameObject.GetComponent<Image>().sprite = Frame1;
-        yield return new WaitForSeconds(0.030f);
+
+        gameObject.GetComponent<Image>().sprite = LookDownAnim[13];
+
+        CassetteRecorder.GetComponent<Image>().color = new Color(CassetteRecorder.GetComponent<Image>().color.r, CassetteRecorder.GetComponent<Image>().color.g, CassetteRecorder.GetComponent<Image>().color.b, 0);
+
+        for (int i = LookDownAnim.Length - 1; i >= 0; i--)
+        {
+            gameObject.GetComponent<Image>().sprite = LookDownAnim[i];
+            yield return new WaitForSeconds(0.030f);
+        }
+        Light1.SetActive(true);
+
         isup = true;
         moving = false;
     }

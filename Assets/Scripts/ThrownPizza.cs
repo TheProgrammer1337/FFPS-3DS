@@ -10,15 +10,12 @@ public class ThrownPizza : MonoBehaviour
     }
     void Move()
     {
-        gameObject.transform.position += new Vector3(20f, 0f, 0f);
+        gameObject.transform.position += new Vector3(20, 0f, 0f);
+        
         if (gameObject.transform.position.x > 400)
         {
             Destroy(gameObject);
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

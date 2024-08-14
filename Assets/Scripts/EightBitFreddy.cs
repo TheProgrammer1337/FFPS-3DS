@@ -11,35 +11,14 @@ public class EightBitFreddy : MonoBehaviour
 
     public GameObject Self;
 
-    public GameObject PizzaObject1;
-    public GameObject PizzaObject2;
-    public GameObject PizzaObject3;
-    public GameObject PizzaObject4;
-    public GameObject PizzaObject5;
-    public GameObject PizzaObject6;
+
 
     public GameObject UpperCanvas;
 
     public GameObject ThrownPizza;
-
-    public Sprite Pizzas1;
-    public Sprite Pizza2;
-    public Sprite Pizza3;
-    public Sprite Pizza4;
-    public Sprite Pizza5;
-    public Sprite Pizza6;
-    public Sprite Pizza7;
-    public Sprite Pizza8;
-    public Sprite Pizza9;
-    public Sprite Pizza10;
-    public Sprite Pizza11;
-    bool alreadydone1 = false;
-    bool alreadydone2 = false;
-    bool alreadydone3 = false;
-    bool alreadydone4 = false;
-    bool alreadydone5 = false;
-    bool alreadydone6 = false;
-
+    public Sprite[] HeldPizzaSprites;
+    public GameObject[] PizzaObjects;
+    private bool[] alreadydone;
     public AudioSource music;
     public AudioSource Pickup;
     public AudioSource Throw;
@@ -52,74 +31,67 @@ public class EightBitFreddy : MonoBehaviour
         image = GetComponent<Image>().sprite;
         StartBlinking();
         music.Play();
+        alreadydone = new bool[PizzaObjects.Length];
     }
     void Update()
     {
+        for (int i = 0; i < PizzaObjects.Length; i++)
+        {
+            if (!alreadydone[i] && !PizzaObjects[i].activeSelf)
+            {
+                StartCoroutine(PizzaRespawn(i, PizzaObjects[i]));
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             if (HeldPizza > 0)
             {
                 Throw.Play();
-                GameObject childGameObject = Instantiate(ThrownPizza, gameObject.transform.position, Quaternion.identity, UpperCanvas.transform);
+                GameObject childGameObject = Instantiate(ThrownPizza, gameObject.transform.position, gameObject.transform.rotation, UpperCanvas.transform);
                 childGameObject.transform.SetSiblingIndex(15);
                 HeldPizza -= 1;
-                CalculatePizza();
+                if (HeldPizza == 0)
+                {
+                    Pizza1.SetActive(false);
+                    return;
+                }
+                Pizza1.GetComponent<Image>().sprite = HeldPizzaSprites[HeldPizza - 1 % HeldPizzaSprites.Length] ;
 
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        // MOVEMENT CODE
+        {
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Keypad4))
         {
             if (!IsInvoking("MoveLeft"))
             {
                 InvokeRepeating("MoveLeft", 0f, 0.15f);
+                transform.localRotation = new Quaternion(0, 10, 0, 0);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            if (!IsInvoking("MoveLeft"))
-            {
-                InvokeRepeating("MoveLeft", 0f, 0.15f);
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
 
-            CancelInvoke("MoveLeft");
-        }
-        else if (Input.GetKeyUp(KeyCode.Keypad4))
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.Keypad4))
         {
             CancelInvoke("MoveLeft");
         }
 
-
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Keypad6))
         {
             if (!IsInvoking("MoveRight"))
             {
                 InvokeRepeating("MoveRight", 0f, 0.15f);
+                transform.localRotation = new Quaternion(0, 0, 0, 0);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            if (!IsInvoking("MoveRight"))
-            {
-                InvokeRepeating("MoveRight", 0f, 0.15f);
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            CancelInvoke("MoveRight");
-        }
-        else if (Input.GetKeyUp(KeyCode.Keypad6))
+
+        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.Keypad6))
         {
             CancelInvoke("MoveRight");
         }
 
-
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Keypad8))
         {
             if (!IsInvoking("MoveUp"))
             {
@@ -127,92 +99,25 @@ public class EightBitFreddy : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyDown(KeyCode.Keypad8))
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.Keypad8))
         {
-            if (!IsInvoking("MoveUp"))
-            {
-                InvokeRepeating("MoveUp", 0f, 0.15f);
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-
-            CancelInvoke("MoveUp");
-        }
-        else if (Input.GetKeyUp(KeyCode.Keypad8))
-        {
-
             CancelInvoke("MoveUp");
         }
 
-
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Keypad2))
         {
             if (!IsInvoking("MoveDown"))
             {
                 InvokeRepeating("MoveDown", 0f, 0.15f);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            if (!IsInvoking("MoveDown"))
-            {
-                InvokeRepeating("MoveDown", 0f, 0.15f);
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+
+        if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.Keypad2))
         {
             CancelInvoke("MoveDown");
         }
-        else if (Input.GetKeyUp(KeyCode.Keypad2))
-        {
-            CancelInvoke("MoveDown");
-        }
+    }
 
-
-        if (alreadydone1 == false)
-        {
-            if (PizzaObject1.active == false)
-            {
-                StartCoroutine("PizzaRespawn1", PizzaObject1);
-            }
-        }
-        if (alreadydone2 == false)
-        {
-            if (PizzaObject2.active == false)
-            {
-                StartCoroutine("PizzaRespawn2", PizzaObject2);
-            }
-        }
-        if (alreadydone3 == false)
-        {
-            if (PizzaObject3.active == false)
-            {
-                StartCoroutine("PizzaRespawn3", PizzaObject3);
-            }
-        }
-        if (alreadydone4 == false)
-        {
-            if (PizzaObject4.active == false)
-            {
-                StartCoroutine("PizzaRespawn4", PizzaObject4);
-            }
-        }
-        if (alreadydone5 == false)
-        {
-            if (PizzaObject5.active == false)
-            {
-                StartCoroutine("PizzaRespawn5", PizzaObject5);
-            }
-        }
-        if (alreadydone6 == false)
-        {
-            if (PizzaObject6.active == false)
-            {
-                StartCoroutine("PizzaRespawn6", PizzaObject6);
-            }
-        }
 
     }
     void MoveLeft()
@@ -278,54 +183,14 @@ public class EightBitFreddy : MonoBehaviour
     {
         StopAllCoroutines();
     }
-    public IEnumerator PizzaRespawn1(GameObject Pizza)
+    private IEnumerator PizzaRespawn(int index, GameObject Pizza)
     {
-        alreadydone1 = true;
+        alreadydone[index] = true;
         yield return new WaitForSeconds(2f);
         Pizza.SetActive(true);
-        alreadydone1 = false;
-
+        alreadydone[index] = false;
     }
-    public IEnumerator PizzaRespawn2(GameObject Pizza)
-    {
-        alreadydone2 = true;
-        yield return new WaitForSeconds(2f);
-        Pizza.SetActive(true);
-        alreadydone2 = false;
 
-    }
-    public IEnumerator PizzaRespawn3(GameObject Pizza)
-    {
-        alreadydone3 = true;
-        yield return new WaitForSeconds(2f);
-        Pizza.SetActive(true);
-        alreadydone3 = false;
-
-    }
-    public IEnumerator PizzaRespawn4(GameObject Pizza)
-    {
-        alreadydone4 = true;
-        yield return new WaitForSeconds(2f);
-        Pizza.SetActive(true);
-        alreadydone4 = false;
-
-    }
-    public IEnumerator PizzaRespawn5(GameObject Pizza)
-    {
-        alreadydone5 = true;
-        yield return new WaitForSeconds(2f);
-        Pizza.SetActive(true);
-        alreadydone5 = false;
-
-    }
-    public IEnumerator PizzaRespawn6(GameObject Pizza)
-    {
-        alreadydone6 = true;
-        yield return new WaitForSeconds(2f);
-        Pizza.SetActive(true);
-        alreadydone6 = false;
-
-    }
     public void OnTriggerEnter2D(Collider2D colliderthing)
     {
         if (colliderthing.CompareTag("Pizza"))
@@ -339,59 +204,13 @@ public class EightBitFreddy : MonoBehaviour
             }
             Pizza1.SetActive(true);
 
-            CalculatePizza();
-            
+            Pizza1.GetComponent<Image>().sprite = HeldPizzaSprites[HeldPizza - 1];
+
+
         }
 
     }
-    void CalculatePizza()
-    {
-        switch (HeldPizza)
-        {
-            case 0:
-                Pizza1.SetActive(false);
-                break;
-            case 1:
-                Pizza1.GetComponent<Image>().sprite = Pizzas1;
-                break;
-            case 2:
-                Pizza1.GetComponent<Image>().sprite = Pizza2;
-                break;
-            case 3:
-                Pizza1.GetComponent<Image>().sprite = Pizza3;
-                break;
-            case 4:
-                Pizza1.GetComponent<Image>().sprite = Pizza4;
-                break;
-            case 5:
-                Pizza1.GetComponent<Image>().sprite = Pizza5;
-                break;
-            case 6:
-                Pizza1.GetComponent<Image>().sprite = Pizza6;
-                break;
-            case 7:
-                Pizza1.GetComponent<Image>().sprite = Pizza7;
-                break;
-            case 8:
-                Pizza1.GetComponent<Image>().sprite = Pizza8;
-                break;
-            case 9:
-                Pizza1.GetComponent<Image>().sprite = Pizza9;
-                break;
-            case 10:
-                Pizza1.GetComponent<Image>().sprite = Pizza10;
-                break;
-            case 11:
-                Pizza1.GetComponent<Image>().sprite = Pizza11;
-                break;
+
+   }
 
 
-
-
-            default:
-                break;
-        }
-        }
-
-
-}
