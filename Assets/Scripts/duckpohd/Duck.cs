@@ -7,13 +7,6 @@ public class Duck : MonoBehaviour
 {
 
     // Use this for initialization
-    void Start()
-    {
-        StartCoroutine("Animation");
-        objectToFollow = gameObject.transform;
-        speed = UnityEngine.Random.Range(0.10f, 0.25f);
-        myStyle.fontSize = 18;
-    }
 
     // Update is called once per frame
 
@@ -23,13 +16,8 @@ public class Duck : MonoBehaviour
 
     float speed;
     float speed2 = 0.035f;
-    public Sprite Frame1;
-    public Sprite Frame2;
-    public Sprite Frame3;
-    public Sprite Frame4;
-    public Sprite Frame5;
-    public Sprite Frame6;
-    public Sprite Frame7;
+    public Sprite[] Frame;
+
 
     public Sprite score1;
     public Sprite score5;
@@ -49,8 +37,10 @@ public class Duck : MonoBehaviour
     public Sprite PickupFrame9;
     public Sprite PickupFrame10;
     public Sprite PickupFrame11;
-    public Counter counter;
+    Image imgcomp;
 
+    public Counter counter;
+    int currentFrameIndex;
     public AudioSource score;
 
     public GameObject scorecounter;
@@ -59,52 +49,50 @@ public class Duck : MonoBehaviour
 
     GUIStyle GGUIStyle = GUIStyle.none;
 
-    void OnGUI()
+    private WaitForSeconds duckanimationDelay;
+
+    void Start()
     {
-        Vector3 screenPosition2 = mainCamera.WorldToScreenPoint(objectToFollow.position);
-        Rect buttonRect2 = new Rect(screenPosition2.x - 18, Screen.height - screenPosition2.y - 20, 36, 36);
-        if (GUI.Button(buttonRect2, "", GGUIStyle))
-        {
-            if (counter.cooking == false)
-            {
-                StartCoroutine("PickupAnimation");
-                StopCoroutine("Animation");
-                counter.Updater();
-            }
-
-        }
-
-
+        duckanimationDelay = new WaitForSeconds(UnityEngine.Random.Range(0.10f, 0.25f));
+        StartCoroutine("Animation");
+        objectToFollow = gameObject.transform;
+        speed = UnityEngine.Random.Range(0.10f, 0.25f);
+        myStyle.fontSize = 18;
+        imgcomp = gameObject.GetComponent<Image>();
     }
+
+
     public IEnumerator Animation()
     {
-        while (true) // Keep the animation loop running indefinitely
-        {
-            gameObject.GetComponent<Image>().sprite = Frame1;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame2;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame3;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame4;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame5;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame6;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame5;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame4;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame3;
-            yield return new WaitForSeconds(speed);
-            gameObject.GetComponent<Image>().sprite = Frame2;
-            yield return new WaitForSeconds(speed);
+        int direction = 1; // 1 for forward -1 for backward
 
+        while (true)
+        {
+            yield return duckanimationDelay;
+            imgcomp.sprite = Frame[currentFrameIndex];
+
+            currentFrameIndex += direction;
+
+            // reverse after end
+            if (currentFrameIndex >= Frame.Length - 1 || currentFrameIndex < 0)
+            {
+                direction *= -1;
+                currentFrameIndex += direction;
+            }
         }
     }
+
+    public void onButtonClicked()
+    {
+        GetComponent<Button>().interactable = false;
+        StartCoroutine("PickupAnimation");
+        StopCoroutine("Animation");
+        counter.Updater();
+    }
+
     public IEnumerator PickupAnimation()
     {
+        // fix this later
         counter.cooking = true;
         gameObject.transform.SetAsLastSibling();
         gameObject.GetComponent<Image>().sprite = PickupFrame1;
