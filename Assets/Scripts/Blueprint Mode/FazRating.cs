@@ -23,7 +23,7 @@ public class FazRating : MonoBehaviour
         yield return new WaitForSeconds(1.1f);
         if (PlayerPrefs.GetInt("FazRatingGain") == 0 && Override != true)
         {
-            gameObject.transform.parent.gameObject.SetActive(false);
+            Destroy(gameObject.transform.parent.gameObject);
         }
         else
         {
@@ -118,7 +118,7 @@ public class FazRating : MonoBehaviour
         PlayerPrefs.SetInt("Money", Money);
         PlayerPrefs.SetInt("FazRatingGain", 0);
         PlayerPrefs.Save();
-        gameObject.transform.parent.gameObject.SetActive(false);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SquareSelector : MonoBehaviour
@@ -20,6 +21,8 @@ public class SquareSelector : MonoBehaviour
     public Sprite PlayFrame4;
     public Sprite PlayFrame5;
     public Sprite PlayFrame6;
+    public BuildingHolder ogBuilding;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
@@ -29,28 +32,62 @@ public class SquareSelector : MonoBehaviour
 
 
     }
-
+    public void onButtonClicked(string buttonthing)
+    {
+        if (buttonthing == "X")
+        {
+            ogBuilding.RemoveBuilding();
+        }
+        if (buttonthing == "Play")
+        {
+            switch (ogBuilding.BuildingUsed)
+            {
+                case BuildingHolder.BuildingType.DuckPond:
+                    SceneManager.LoadScene("Duckpondminigame");
+                    SceneManager.UnloadSceneAsync("Tycoon");
+                    break;
+                case BuildingHolder.BuildingType.BalloonBarrel:
+                    SceneManager.LoadScene("BalloonBarrel");
+                    SceneManager.UnloadSceneAsync("Tycoon");
+                    break;
+                case BuildingHolder.BuildingType.DiscountBallPit:
+                    SceneManager.LoadScene("BallPit");
+                    SceneManager.UnloadSceneAsync("Tycoon");
+                    break;
+                case BuildingHolder.BuildingType.BalloonCart:
+                    SceneManager.LoadScene("BalloonCart");
+                    SceneManager.UnloadSceneAsync("Tycoon");
+                    break;
+                case BuildingHolder.BuildingType.CandyCadet:
+                    SceneManager.LoadScene("CandyCadet");
+                    SceneManager.UnloadSceneAsync("Tycoon");
+                    break;
+            }
+        }
+    
+    }
     IEnumerator Animation()
     {
+        Image image = gameObject.GetComponent<Image>();
         while (true)
         {
-            gameObject.GetComponent<Image>().sprite = PlayFrame1;
+            image.sprite = PlayFrame1;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame2;
+            image.sprite = PlayFrame2;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame3;
+            image.sprite = PlayFrame3;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame4;
+            image.sprite = PlayFrame4;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame5;
+            image.sprite = PlayFrame5;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame4;
+            image.sprite = PlayFrame4;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame3;
+            image.sprite = PlayFrame3;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame2;
+            image.sprite = PlayFrame2;
             yield return new WaitForSeconds(0.040f);
-            gameObject.GetComponent<Image>().sprite = PlayFrame1;
+            image.sprite = PlayFrame1;
 
         }
 

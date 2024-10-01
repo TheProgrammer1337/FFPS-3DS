@@ -13,7 +13,7 @@ public class BallpitArrow : MonoBehaviour
         {
             if (gameObject.transform.localPosition.x > -200f)
             {
-                gameObject.transform.localPosition += new Vector3(-speed, 0, 0);
+                gameObject.transform.localPosition += new Vector3(-speed, 0, 0) * Time.deltaTime;
             }
             else
             {
@@ -24,7 +24,7 @@ public class BallpitArrow : MonoBehaviour
         {
             if (gameObject.transform.localPosition.x < 200f)
             {
-                gameObject.transform.localPosition += new Vector3(speed, 0, 0);
+                gameObject.transform.localPosition += new Vector3(speed, 0, 0) * Time.deltaTime;
             }
             else
             {

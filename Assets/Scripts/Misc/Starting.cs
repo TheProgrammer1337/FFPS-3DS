@@ -7,6 +7,7 @@ public class Starting : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         if (PlayerPrefs.GetInt("HasCompleted8BitIntro", 0) == 1)
         {
             SceneManager.LoadScene(sceneName: "RealTitleScreen");

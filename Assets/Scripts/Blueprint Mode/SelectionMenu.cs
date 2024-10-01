@@ -13,7 +13,7 @@ public class SelectionMenu : MonoBehaviour
     }
     void OnEnable()
     {
-        if (PlayerPrefs.GetInt("balloonbarrel") == 0)
+        if (PlayerPrefs.GetInt("BalloonBarrel") == 0)
         {
             balloonicon.SetActive(true);
         }
@@ -21,7 +21,7 @@ public class SelectionMenu : MonoBehaviour
         {
             balloonicon.SetActive(false);
         }
-        if (PlayerPrefs.GetInt("discountballpit") == 0)
+        if (PlayerPrefs.GetInt("DiscountBallPit") == 0)
         {
             discountballpiticon.SetActive(true);
         }
@@ -29,7 +29,7 @@ public class SelectionMenu : MonoBehaviour
         {
             discountballpiticon.SetActive(false);
         }
-        if (PlayerPrefs.GetInt("duckpond") == 0)
+        if (PlayerPrefs.GetInt("DuckPond") == 0)
         {
             duckpondicon.SetActive(true);
         }
@@ -37,7 +37,7 @@ public class SelectionMenu : MonoBehaviour
         {
             duckpondicon.SetActive(false);
         }
-        if (PlayerPrefs.GetInt("ballooncart") == 0)
+        if (PlayerPrefs.GetInt("BalloonCart") == 0)
         {
             ballooncarticon.SetActive(true);
         }
@@ -45,7 +45,7 @@ public class SelectionMenu : MonoBehaviour
         {
             ballooncarticon.SetActive(false);
         }
-        if (PlayerPrefs.GetInt("candycadet") == 0)
+        if (PlayerPrefs.GetInt("CandyCadet") == 0)
         {
             candycadeticon.SetActive(true);
         }
@@ -62,9 +62,11 @@ public class SelectionMenu : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -90,23 +92,23 @@ public class SelectionMenu : MonoBehaviour
     {
         if (button.name == "balloonbarrel")
         {
-            PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "balloonbarrel");
+            PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "BalloonBarrel");
             subselectionsquare.gameObject.SetActive(true);
-            originalspawner.GetComponent<BuildingHolder>().BuildingUsed = "balloonbarrel";
+            originalspawner.GetComponent<BuildingHolder>().BuildingUsed = BuildingHolder.BuildingType.BalloonBarrel;
             originalspawner.GetComponent<BuildingHolder>().unused = false;
             originalspawner.gameObject.transform.localScale = new Vector3(40, 40, 0);
-            PlayerPrefs.SetInt("balloonbarrel", 1);
+            PlayerPrefs.SetInt("BalloonBarrel", 1);
             balloonicon.SetActive(false);
             gameObject.SetActive(false);
         }
         if (button.name == "ballpit")
         {
-            if (PlayerPrefs.GetInt("discountballpit") == 0)
+            if (PlayerPrefs.GetInt("DiscountBallPit") == 0)
             {
                 subselectionsquare.gameObject.SetActive(true);
-                PlayerPrefs.SetInt("discountballpit", 1);
-                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "discountballpit");
-                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = "discountballpit";
+                PlayerPrefs.SetInt("DiscountBallPit", 1);
+                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "DiscountBallPit");
+                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = BuildingHolder.BuildingType.DiscountBallPit;
                 originalspawner.GetComponent<BuildingHolder>().unused = false;
                 originalspawner.gameObject.transform.localScale = new Vector3(42, 42, 0);
                 discountballpiticon.SetActive(false);
@@ -118,11 +120,11 @@ public class SelectionMenu : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("duckpond") == 0)
             {
-                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "duckpond");
+                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "DuckPond");
 
                 subselectionsquare.gameObject.SetActive(true);
-                PlayerPrefs.SetInt("duckpond", 1);
-                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = "duckpond";
+                PlayerPrefs.SetInt("DuckPond", 1);
+                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = BuildingHolder.BuildingType.DuckPond;
                 originalspawner.GetComponent<BuildingHolder>().unused = false;
                 originalspawner.gameObject.transform.localScale = new Vector3(50, 55, 0);
                 duckpondicon.SetActive(false);
@@ -132,13 +134,13 @@ public class SelectionMenu : MonoBehaviour
         }
         if (button.name == "ballooncart")
         {
-            if (PlayerPrefs.GetInt("ballooncart") == 0)
+            if (PlayerPrefs.GetInt("BalloonCart") == 0)
             {
-                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "ballooncart");
+                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "BalloonCart");
 
                 subselectionsquare.gameObject.SetActive(true);
-                PlayerPrefs.SetInt("ballooncart", 1);
-                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = "ballooncart";
+                PlayerPrefs.SetInt("BalloonCart", 1);
+                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = BuildingHolder.BuildingType.BalloonCart;
                 originalspawner.GetComponent<BuildingHolder>().unused = false;
                 originalspawner.gameObject.transform.localScale = new Vector3(58.7f, 58.7f, 0);
 
@@ -149,13 +151,13 @@ public class SelectionMenu : MonoBehaviour
         }
         if (button.name == "candycadet")
         {
-            if (PlayerPrefs.GetInt("candycadet") == 0)
+            if (PlayerPrefs.GetInt("CandyCadet") == 0)
             {
-                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "candycadet");
+                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "CandyCadet");
 
                 subselectionsquare.gameObject.SetActive(true);
-                PlayerPrefs.SetInt("candycadet", 1);
-                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = "candycadet";
+                PlayerPrefs.SetInt("CandyCadet", 1);
+                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = BuildingHolder.BuildingType.CandyCadet;
                 originalspawner.GetComponent<BuildingHolder>().unused = false;
                 originalspawner.gameObject.transform.localScale = new Vector3(58.7f, 58.7f, 0);
 
@@ -164,6 +166,12 @@ public class SelectionMenu : MonoBehaviour
 
             }
         }
+        originalspawner.GetComponent<BuildingHolder>().unused = false;
+        originalspawner.GetComponent<BuildingHolder>().animationPlaying = false;
+
+        originalspawner.GetComponent<BuildingHolder>().SetSize();
+        originalspawner.GetComponent<BuildingHolder>().SetSprite();
+
 
     }
 
