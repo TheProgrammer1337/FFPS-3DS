@@ -13,7 +13,8 @@ public class BuildingHolder : MonoBehaviour
         DiscountBallPit,
         DuckPond,
         BalloonCart,
-        CandyCadet
+        CandyCadet,
+        BasketBall
     }
 
     public BuildingType BuildingUsed;
@@ -91,6 +92,9 @@ public class BuildingHolder : MonoBehaviour
             case BuildingType.CandyCadet:
                 gameObject.transform.localScale = new Vector3(58.7f, 58.7f, 0);
                 break;
+            case BuildingType.BasketBall:
+                gameObject.transform.localScale = new Vector3(65f, 65f, 0);
+                break;
             default:
                 gameObject.transform.localScale = new Vector3(30, 30, 0);
                 break;
@@ -103,27 +107,39 @@ public class BuildingHolder : MonoBehaviour
         switch (BuildingUsed)
         {
             case BuildingType.BalloonBarrel:
-                image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BalloonBarrel") as Sprite;
+                image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BalloonBarrel");
                 break;
             case BuildingType.DiscountBallPit:
                 image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BallPit");
                 break;
             case BuildingType.DuckPond:
-                image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/DuckPond") as Sprite;
+                image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/DuckPond");
                 break;
             case BuildingType.BalloonCart:
-                image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BalloonCart") as Sprite;
+                image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BalloonCart");
                 break;
             case BuildingType.CandyCadet:
-                if (left == true) 
+                if (left == true)
                 {
-                    image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/CCLeft") as Sprite;
+                    image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/CCLeft");
                 }
                 else
                 {
-                    image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/CCRight") as Sprite;
+                    image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/CCRight");
                 }
                 break;
+
+            case BuildingType.BasketBall:
+                if (left == true)
+                {
+                    image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BasketBallLeft");
+                }
+                else
+                {
+                    image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BasketBallRight");
+                }
+                break;
+
             case BuildingType.None:
                 break;
         }

@@ -62,6 +62,10 @@ public class SquareSelector : MonoBehaviour
                     SceneManager.LoadScene("CandyCadet");
                     SceneManager.UnloadSceneAsync("Tycoon");
                     break;
+                case BuildingHolder.BuildingType.BasketBall:
+                    SceneManager.LoadScene("BasketBall");
+                    SceneManager.UnloadSceneAsync("Tycoon");
+                    break;
             }
         }
     

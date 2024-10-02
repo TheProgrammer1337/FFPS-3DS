@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: 9391582c430229746bfccb775e88a3d4
-timeCreated: 1715157715
+guid: 29e67b0c7a680b64cbfbeae389dc8a1d
+timeCreated: 1727883609
 licenseType: Pro
 TrueTypeFontImporter:
   serializedVersion: 4
-  fontSize: 39
-  forceTextureCase: -2
+  fontSize: 21
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Lucida Sans Typewriter
+  fontName: Trajan Pro 3
   fontNames:
-  - Lucida Sans Typewriter
+  - Trajan Pro 3
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 1
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   userData: 

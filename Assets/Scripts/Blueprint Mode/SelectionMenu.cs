@@ -3,14 +3,17 @@
 public class SelectionMenu : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
-    {
+    public GameObject balloonicon;
 
+    public GameObject originalspawner;
 
+    public GameObject discountballpiticon;
+    public GameObject duckpondicon;
+    public GameObject ballooncarticon;
+    public GameObject candycadeticon;
+    public GameObject basketballicon;
+    public GameObject subselectionsquare;
 
-
-    }
     void OnEnable()
     {
         if (PlayerPrefs.GetInt("BalloonBarrel") == 0)
@@ -53,6 +56,14 @@ public class SelectionMenu : MonoBehaviour
         {
             candycadeticon.SetActive(false);
         }
+        if (PlayerPrefs.GetInt("BasketBall") == 0)
+        {
+            basketballicon.SetActive(true);
+        }
+        else
+        {
+            basketballicon.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -79,15 +90,7 @@ public class SelectionMenu : MonoBehaviour
 
     }
 
-    public GameObject balloonicon;
 
-    public GameObject originalspawner;
-
-    public GameObject discountballpiticon;
-    public GameObject duckpondicon;
-    public GameObject ballooncarticon;
-    public GameObject candycadeticon;
-    public GameObject subselectionsquare;
     public void OnButtonClick(GameObject button)
     {
         if (button.name == "balloonbarrel")
@@ -158,6 +161,23 @@ public class SelectionMenu : MonoBehaviour
                 subselectionsquare.gameObject.SetActive(true);
                 PlayerPrefs.SetInt("CandyCadet", 1);
                 originalspawner.GetComponent<BuildingHolder>().BuildingUsed = BuildingHolder.BuildingType.CandyCadet;
+                originalspawner.GetComponent<BuildingHolder>().unused = false;
+                originalspawner.gameObject.transform.localScale = new Vector3(58.7f, 58.7f, 0);
+
+                candycadeticon.SetActive(false);
+                gameObject.SetActive(false);
+
+            }
+        }
+        if (button.name == "basketball")
+        {
+            if (PlayerPrefs.GetInt("BasketBall") == 0)
+            {
+                PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, "BasketBall");
+
+                subselectionsquare.gameObject.SetActive(true);
+                PlayerPrefs.SetInt("BasketBall", 1);
+                originalspawner.GetComponent<BuildingHolder>().BuildingUsed = BuildingHolder.BuildingType.BasketBall;
                 originalspawner.GetComponent<BuildingHolder>().unused = false;
                 originalspawner.gameObject.transform.localScale = new Vector3(58.7f, 58.7f, 0);
 

@@ -1,20 +1,21 @@
 fileFormatVersion: 2
-guid: 9391582c430229746bfccb775e88a3d4
-timeCreated: 1715157715
+guid: d3f97ecbec2b7a04da6b1b6fddfb0128
+timeCreated: 1727884591
 licenseType: Pro
 TrueTypeFontImporter:
   serializedVersion: 4
-  fontSize: 39
-  forceTextureCase: -2
+  fontSize: 29
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontName: Lucida Sans Typewriter
   fontNames:
   - Lucida Sans Typewriter
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9391582c430229746bfccb775e88a3d4, type: 3}
   customCharacters: 
-  fontRenderingMode: 1
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   userData: 
