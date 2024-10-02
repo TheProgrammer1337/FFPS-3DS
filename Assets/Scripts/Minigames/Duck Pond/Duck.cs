@@ -38,7 +38,7 @@ public class Duck : MonoBehaviour
     public Sprite PickupFrame10;
     public Sprite PickupFrame11;
     Image imgcomp;
-
+    bool canclick;
     public Counter counter;
     int currentFrameIndex;
     public AudioSource score;
@@ -84,10 +84,14 @@ public class Duck : MonoBehaviour
 
     public void onButtonClicked()
     {
-        GetComponent<Button>().interactable = false;
-        StartCoroutine("PickupAnimation");
-        StopCoroutine("Animation");
-        counter.Updater();
+        if (counter.cooking == false)
+        {
+            GetComponent<Button>().interactable = false;
+            StartCoroutine("PickupAnimation");
+            StopCoroutine("Animation");
+            counter.Updater();
+        }
+ 
     }
 
     public IEnumerator PickupAnimation()
