@@ -15,18 +15,20 @@ public class FazRating : MonoBehaviour
     // Use this for initialization
     IEnumerator Start()
     {
+
         Money = PlayerPrefs.GetInt("Money");
         MoneyText.text = Money.ToString();
         rating = PlayerPrefs.GetInt("FazRating");
         text = GetComponent<Text>();
         text.text = rating.ToString();
-        yield return new WaitForSeconds(1.1f);
         if (PlayerPrefs.GetInt("FazRatingGain") == 0 && Override != true)
         {
             Destroy(gameObject.transform.parent.gameObject);
         }
+
         else
         {
+            yield return new WaitForSeconds(1.1f);
             RatingGain = PlayerPrefs.GetInt("FazRatingGain");
             StartCoroutine("Tickdown");
             audioSource.Play();

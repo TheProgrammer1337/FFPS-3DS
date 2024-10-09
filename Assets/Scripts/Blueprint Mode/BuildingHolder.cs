@@ -14,7 +14,8 @@ public class BuildingHolder : MonoBehaviour
         DuckPond,
         BalloonCart,
         CandyCadet,
-        BasketBall
+        BasketBall,
+        LadderTower
     }
 
     public BuildingType BuildingUsed;
@@ -95,6 +96,9 @@ public class BuildingHolder : MonoBehaviour
             case BuildingType.BasketBall:
                 gameObject.transform.localScale = new Vector3(65f, 65f, 0);
                 break;
+            case BuildingType.LadderTower:
+                gameObject.transform.localScale = new Vector3(75f, 75f, 0);
+                break;
             default:
                 gameObject.transform.localScale = new Vector3(30, 30, 0);
                 break;
@@ -138,6 +142,9 @@ public class BuildingHolder : MonoBehaviour
                 {
                     image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/BasketBallRight");
                 }
+                break;
+            case BuildingType.LadderTower:
+                image.sprite = Resources.Load<Sprite>("Sprites/BlueprintMode/Buildings/LadderTower");
                 break;
 
             case BuildingType.None:
