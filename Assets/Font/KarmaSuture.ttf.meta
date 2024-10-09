@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2ca9e9fed5e3b22429e987c5e0758857
+timeCreated: 1728079022
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 30
+  forceTextureCase: -1
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Karma Suture
+  fontNames:
+  - Karma Suture
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

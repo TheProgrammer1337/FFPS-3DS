@@ -35,6 +35,10 @@ public class PizzaMarkerController : MonoBehaviour
             if (UporDown == 1)
             {
 
+                SceneManager.LoadScene("DesignPizza");
+                SceneManager.UnloadSceneAsync(sceneName: "8BitMainMenu");
+                
+
             }
             if (UporDown == 0)
             {
