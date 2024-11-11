@@ -279,14 +279,9 @@ public class LadderTower : MonoBehaviour
     void Snap()
     {
         snap.Play();
-        StartCoroutine(camerashake());
+        Invoke("Finish", 4f);
     }
-    IEnumerator camerashake()
-    {
-        UpperCanvas.transform.localPosition += new Vector3(0f, 50, 0);
-        yield return new WaitForSeconds(0.1f);
-        UpperCanvas.transform.localPosition += new Vector3(0f, -50, 0);
-    }
+
     void Finish()
     {
         SceneManager.LoadScene("Tycoon");
