@@ -14,6 +14,7 @@ public class SelectionMenu : MonoBehaviour
 
     public GameObject subselectionsquare;
 
+    public SquareSelector squareSelector;
 
     private Dictionary<string, GameObject> iconMap;
 
@@ -81,6 +82,8 @@ public class SelectionMenu : MonoBehaviour
         PlayerPrefs.SetString("Buildingslot" + originalspawner.GetComponent<BuildingHolder>().id, buildingName);
         subselectionsquare.gameObject.SetActive(true);
         PlayerPrefs.SetInt(buildingName, 1);
+
+        squareSelector.ogBuilding = originalspawner.GetComponent<BuildingHolder>();
 
         originalspawner.GetComponent<BuildingHolder>().BuildingUsed = (BuildingHolder.BuildingType)System.Enum.Parse(typeof(BuildingHolder.BuildingType), buildingName);
         originalspawner.GetComponent<BuildingHolder>().unused = false;
