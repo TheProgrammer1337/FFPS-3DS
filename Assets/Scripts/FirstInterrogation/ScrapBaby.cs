@@ -141,7 +141,7 @@ public class ScrapBaby : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Black.SetActive(true);
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(sceneName: "Tycoon");
+        SceneManager.LoadScene(sceneName: "Advertisement");
         SceneManager.UnloadSceneAsync(sceneName: "FirstInterrogation");
 
     }

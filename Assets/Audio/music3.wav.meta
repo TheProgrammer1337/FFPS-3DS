@@ -11,14 +11,7 @@ AudioImporter:
     compressionFormat: 1
     quality: 1
     conversionMode: 0
-  platformSettingOverrides:
-    23:
-      loadType: 1
-      sampleRateSetting: 1
-      sampleRateOverride: 44100
-      compressionFormat: 8
-      quality: 1
-      conversionMode: 0
+  platformSettingOverrides: {}
   forceToMono: 1
   normalize: 1
   preloadAudioData: 1
