@@ -23,6 +23,7 @@ public class Confetti : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
         }
     }
     IEnumerator ConfettiSpawning()

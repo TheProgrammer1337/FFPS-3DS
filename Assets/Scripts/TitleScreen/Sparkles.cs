@@ -38,10 +38,7 @@ public class Sparkles : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
     IEnumerator Delay()
     {
         while (true)
