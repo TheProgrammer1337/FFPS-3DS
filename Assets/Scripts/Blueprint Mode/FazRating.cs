@@ -23,7 +23,7 @@ public class FazRating : MonoBehaviour
         text.text = rating.ToString();
         if (PlayerPrefs.GetInt("FazRatingGain") == 0 && Override != true)
         {
-            Destroy(gameObject.transform.parent.gameObject);
+            gameObject.transform.parent.gameObject.SetActive(false);
         }
 
         else
@@ -120,7 +120,7 @@ public class FazRating : MonoBehaviour
         PlayerPrefs.SetInt("Money", Money);
         PlayerPrefs.SetInt("FazRatingGain", 0);
         PlayerPrefs.Save();
-        Destroy(gameObject.transform.parent.gameObject);
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
 
 }

@@ -67,7 +67,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Nintendo 3DS
-    maxTextureSize: 256
+    maxTextureSize: 2048
     textureFormat: 61
     textureCompression: 1
     compressionQuality: 50
@@ -78,7 +78,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: round_text
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,176 +1,175 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using UnityEngine.SceneManagement;
-public class IntroManager : MonoBehaviour {
-	public float remainingtime;
-	public AudioSource clip;
-	public AudioClip[] clipArray;
-	int counter = 0;
-	// Use this for initialization
-	void Start () {
-		remainingtime = clip.clip.length;
-		gameObject.GetComponent<Animation>().Play("Anim1");
 
+public class IntroManager : MonoBehaviour
+{
+    public AudioSource clip;
+    public AudioClip[] clipArray;
+    private int counter = 0;
+    private bool changeScene = false;
 
+    // Use this for initialization
+    void Start()
+    {
+        StartCoroutine(HandleIntroSequence());
     }
-	
-	// Update is called once per frame
-	void Update () {
-		remainingtime -= Time.deltaTime;
-		if (remainingtime < 0)
-		{
-			counter += 1;
-            try
-            {
-                clip.clip = clipArray[counter];
-                clip.Play();
-            }
-            catch
-            {
-                SceneManager.LoadSceneAsync("Advertisement-TycoonLoader");
-            }
-            remainingtime = clip.clip.length;
-            switch (counter)
-			{
-				case 1:
-					gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1345");
-					gameObject.GetComponent<Animation>().Stop();
-                    gameObject.transform.localScale = new Vector2(0.214f, 0.223f);
-                    gameObject.transform.localPosition = new Vector2(3.791222f, 0f);
 
-                    break;
-                case 2:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1347");
-                    gameObject.GetComponent<Animation>().Play("Anim2");
-                    break;
-                case 3:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1350");
-                    gameObject.GetComponent<Animation>().Stop();
-                    gameObject.transform.localScale = new Vector2(0.214f, 0.223f);
-                    gameObject.transform.localPosition = new Vector2(3.791222f, 0f);
+    private IEnumerator HandleIntroSequence()
+    {
+        while (counter < clipArray.Length)
+        {
+            // Play the next audio clip
+            clip.clip = clipArray[counter];
+            clip.Play();
 
-                    break;
+            // Wait for the duration of the audio clip to complete
+            float remainingTime = clip.clip.length;
 
-                case 4:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1349");
-                    break;
+            // Update the image and animation according to the counter value
+            HandleSceneTransition();
 
-                case 5:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1352");
-					gameObject.GetComponent<Animation>().Stop();
-                    gameObject.GetComponent<Animation>().Play("Anim2");
-                    break;
-                case 6:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1348");
-                    gameObject.GetComponent<Animation>().Play("Anim1");
-                    break;
-                case 7:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1351");
-                    gameObject.GetComponent<Animation>().Stop();
-                    gameObject.transform.localScale = new Vector2(0.214f, 0.223f);
-                    gameObject.transform.localPosition = new Vector2(3.791222f, 0f);
-                    break;
-                case 8:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1375");
-                    break;
-                case 9:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1354");
-                    gameObject.GetComponent<Animation>().Play("Anim1");
-                    gameObject.transform.localScale = new Vector2(0.25f, 0.223f);
-                    break;
-                case 10:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1372");
-                    gameObject.GetComponent<Animation>().Stop();
-                    gameObject.GetComponent<Animation>().Play("Anim2");
-                    break;
-                case 11:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1355");
-                    gameObject.GetComponent<Animation>().Stop();
-                    gameObject.transform.localScale = new Vector2(0.214f, 0.223f);
-                    gameObject.transform.localPosition = new Vector2(3.791222f, 0f);
+            // Wait until the current audio clip finishes playing
+            yield return new WaitForSeconds(remainingTime);
 
-                    break;
-                case 12:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1356");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 13:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1357");
-                    break;
-                case 14:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1358");
-                    break;
-                case 15:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1373");
-                    gameObject.GetComponent<Animation>().Play("Anim1");
-                    gameObject.transform.localScale = new Vector2(0.25f, 0.223f);
-                    break;
-                case 16:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1359");
-                    gameObject.GetComponent<Animation>().Stop();
-                    gameObject.transform.localScale = new Vector2(0.214f, 0.223f);
-                    gameObject.transform.localPosition = new Vector2(3.791222f, 0f);
-                    break;
-                case 17:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1360");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 18:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1361");
-                    gameObject.GetComponent<Animation>().Play("Anim1");
-                    gameObject.transform.localScale = new Vector2(0.25f, 0.223f);
-                    break;
-                case 19:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1362");
-                    gameObject.GetComponent<Animation>().Stop();
-                    gameObject.transform.localScale = new Vector2(0.214f, 0.223f);
-                    gameObject.transform.localPosition = new Vector2(3.791222f, 0f);
-                    break;
-                case 20:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1364");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 21:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1363");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 22:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1365");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 23:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1366");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 24:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1367");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 25:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1368");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 26:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1369");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 27:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1370");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                case 28:
-                    gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/1371");
-                    gameObject.GetComponent<Animation>().Stop();
-                    break;
-                default:
-                    SceneManager.LoadSceneAsync("Advertisement-TycoonLoader");
-                    break;
-			}
-            Resources.UnloadUnusedAssets();
+            // Increment counter to move to the next clip/image
+            counter++;
+        }
 
+        // Handle scene change after the loop completes
+        if (changeScene)
+        {
+            ChangeScene("Advertisement-TycoonLoader");
+        }
+    }
+
+    private void HandleSceneTransition()
+    {
+        switch (counter)
+        {
+            case 1:
+                UpdateImageAndAnimation("1345", "Anim1", new Vector2(0.214f, 0.223f), new Vector2(3.791222f, 0f), false);
+                break;
+            case 2:
+                UpdateImageAndAnimation("1347", "Anim2");
+                break;
+            case 3:
+                UpdateImageAndAnimation("1350", "Anim1", new Vector2(0.214f, 0.223f), new Vector2(3.791222f, 0f), false);
+                break;
+            case 4:
+                UpdateImageAndAnimation("1349");
+                break;
+            case 5:
+                UpdateImageAndAnimation("1352", "Anim2");
+                break;
+            case 6:
+                UpdateImageAndAnimation("1348", "Anim1");
+                break;
+            case 7:
+                UpdateImageAndAnimation("1351", "Anim1", new Vector2(0.214f, 0.223f), new Vector2(3.791222f, 0f), false);
+                break;
+            case 8:
+                UpdateImageAndAnimation("1375");
+                break;
+            case 9:
+                UpdateImageAndAnimation("1354", "Anim1", new Vector2(0.25f, 0.223f));
+                break;
+            case 10:
+                UpdateImageAndAnimation("1372", "Anim2");
+                break;
+            case 11:
+                UpdateImageAndAnimation("1355", null, new Vector2(0.214f, 0.223f), new Vector2(3.791222f, 0f), false);
+                break;
+            case 12:
+                UpdateImageAndAnimation("1356");
+                break;
+            case 13:
+                UpdateImageAndAnimation("1357");
+                break;
+            case 14:
+                UpdateImageAndAnimation("1358");
+                break;
+            case 15:
+                UpdateImageAndAnimation("1373", "Anim1", new Vector2(0.25f, 0.223f));
+                break;
+            case 16:
+                UpdateImageAndAnimation("1359", null, new Vector2(0.214f, 0.223f), new Vector2(3.791222f, 0f), false);
+                break;
+            case 17:
+                UpdateImageAndAnimation("1360");
+                break;
+            case 18:
+                UpdateImageAndAnimation("1361", "Anim1", new Vector2(0.25f, 0.223f));
+                break;
+            case 19:
+                UpdateImageAndAnimation("1362", null, new Vector2(0.214f, 0.223f), new Vector2(3.791222f, 0f), false);
+                break;
+            case 20:
+                UpdateImageAndAnimation("1364");
+                break;
+            case 21:
+                UpdateImageAndAnimation("1363");
+                break;
+            case 22:
+                UpdateImageAndAnimation("1365");
+                break;
+            case 23:
+                UpdateImageAndAnimation("1366");
+                break;
+            case 24:
+                UpdateImageAndAnimation("1367");
+                break;
+            case 25:
+                UpdateImageAndAnimation("1368");
+                break;
+            case 26:
+                UpdateImageAndAnimation("1369");
+                break;
+            case 27:
+                UpdateImageAndAnimation("1370");
+                break;
+            case 28:
+                UpdateImageAndAnimation("1371");
+                changeScene = true;  // Set changeScene to true when ready to transition
+                break;
+        }
+    }
+
+    // Consolidated function to change the scene
+    private void ChangeScene(string sceneName)
+    {
+        // Only change scene if changeScene is true
+        if (changeScene)
+        {
+            SceneManager.LoadSceneAsync(sceneName);
+            changeScene = false;  // Reset changeScene after the scene is loaded
+        }
+    }
+
+    private void UpdateImageAndAnimation(string spriteName, string animationName = null, Vector2? scale = null, Vector2? position = null, bool playAnim = true)
+    {
+        Resources.UnloadUnusedAssets();
+        gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/IntroAd/" + spriteName);
+
+        if (animationName != null)
+        {
+            gameObject.GetComponent<Animation>().Play(animationName);
+        }
+
+        if (scale.HasValue)
+        {
+            gameObject.transform.localScale = scale.Value;
+        }
+
+        if (position.HasValue)
+        {
+            gameObject.transform.localPosition = position.Value;
+        }
+
+        if (!playAnim)
+        {
+            gameObject.GetComponent<Animation>().Stop();
         }
     }
 }
