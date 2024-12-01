@@ -15,33 +15,73 @@ public class CandyCadet : MonoBehaviour
     public float speed;
     public AudioSource nextime;
     public AudioSource music;
+    public AudioClip story1;
+    public AudioClip story2;
+    public AudioClip story3;
+    public AudioSource start;
     public AudioSource twinkle;
     public GameObject pressa;
     public Text text;
     public GameObject wintext;
     public GameObject airhorn;
+    public float f;
+    public GameObject startText;
+    int bonus;
+    bool started;
+
     int fazrating;
     // Use this for initialization
     void Start()
     {
         StartCoroutine("Animation");
+        StartCoroutine(Starting());
+    }
+    IEnumerator Starting()
+    {
+        yield return new WaitForSeconds(start.clip.length);
+        startText.SetActive(true);
+        music.Play();
+        startText.SetActive(true);
+        yield return new WaitForSeconds(4);
+        started = true;
+        pressa.SetActive(true);
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) && started == true)
         {
+            int rand = UnityEngine.Random.RandomRange(0, 100);
+            if (rand == 0)
+            {
+                nextime.clip = story1;
+                bonus = 5000;
+            }
+            else if (rand == 1)
+            {
+                nextime.clip = story2;
+                bonus = 5000;
+            }
+            else if (rand == 2)
+            {
+                nextime.clip = story3;
+                bonus = 5000;
+            }
+
             StartCoroutine("Candy");
+
             candy.SetActive(true);
             twinkle.gameObject.SetActive(true);
             pressa.gameObject.SetActive(false);
             fazrating = 250 * Random.Range(1, 9);
-            PlayerPrefs.SetInt("FazRatingGain", fazrating);
+            PlayerPrefs.SetInt("FazRatingGain", fazrating + bonus);
+            PlayerPrefs.Save();
             text.text = fazrating.ToString();
         }
     }
     IEnumerator Candy()
     {
+        started = false;
         while (candy.transform.localPosition.y > -53.1f)
         {
             yield return new WaitForSeconds(0.01f);
@@ -53,10 +93,11 @@ public class CandyCadet : MonoBehaviour
         music.Stop();
         Destroy(candy);
         nextime.gameObject.SetActive(true);
-        while (nextime.time <= 3.7f)
+        f = nextime.clip.length - 0.1f;
+        while (nextime.time <= f)
         {
             yield return new WaitForSeconds(0.05f);
-            gameObject.transform.localScale += new Vector3(0.08f, 0.08f);
+            gameObject.transform.localScale += new Vector3(0.02f, 0.02f);
 
         }
         yield return new WaitForSeconds(0.1f);
