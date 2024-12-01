@@ -115,12 +115,12 @@ public class FazRating : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         audioSource.Stop();
-        yield return new WaitForSeconds(5f);
         PlayerPrefs.SetInt("FazRating", rating);
         PlayerPrefs.SetInt("Money", Money);
         PlayerPrefs.SetInt("FazRatingGain", 0);
         PlayerPrefs.Save();
-        gameObject.transform.parent.gameObject.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        Destroy(transform.parent.gameObject);
     }
 
 }
