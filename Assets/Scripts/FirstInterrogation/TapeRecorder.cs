@@ -37,17 +37,16 @@ public class TapeRecorder : MonoBehaviour
         }
 
     }
-    void OnGUI()
+    public void OnButtonClick(int num)
     {
-        if (GUI.Button(new Rect(107, 153, 20, 25), "", GUIStyle.none))
+        if (num == 0)
         {
             StartCoroutine("TapePlayAnimation");
             tapestate = 1;
             audio.UnPause();
         }
-        if (GUI.Button(new Rect(137.5f, 153, 20, 25), "", GUIStyle.none))
+        else
         {
-
             GetComponent<Image>().sprite = FrameStopped;
             StopCoroutine("TapePlayAnimation");
             StartCoroutine("TapeStop");
@@ -55,6 +54,7 @@ public class TapeRecorder : MonoBehaviour
             audio.Pause();
         }
     }
+
     IEnumerator TapePlayAnimation()
     {
         while (true)
