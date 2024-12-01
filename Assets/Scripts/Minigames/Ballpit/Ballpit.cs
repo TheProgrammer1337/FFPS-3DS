@@ -200,7 +200,8 @@ public class Ballpit : MonoBehaviour
         else
         {
             end.Play();
-            yield return new WaitForSeconds(1f);
+            PlayerPrefs.SetInt("FazRatingGain", fazrating);
+            PlayerPrefs.Save();
             StartCoroutine("WinDelay");
 
         }
