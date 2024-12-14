@@ -14,7 +14,7 @@ public class Toppingswitch : MonoBehaviour {
 	{
         if (buttonObject.GetComponent<Image>().color.a == 1)
 		{
-            buttonObject.GetComponent<Image>().color = new Color(1, 1, 1, 0.8f);
+            buttonObject.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
         }
 		else
 		{
