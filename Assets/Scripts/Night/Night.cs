@@ -4,42 +4,11 @@ using UnityEngine.UI;
 
 public class Night : MonoBehaviour
 {
-    //HORRIFIC CODE AHEAD
     public Sprite defaultframe;
-    public Sprite turnleftframe1;
-    public Sprite turnleftframe2;
-    public Sprite turnleftframe3;
-    public Sprite turnleftframe4;
-    public Sprite turnleftframe5;
-    public Sprite turnleftframe6;
-    public Sprite turnleftframe7;
-    public Sprite turnleftframe8;
-    public Sprite turnleftframe9;
-    public Sprite turnleftframe10;
-    public Sprite turnleftframe11;
-    public Sprite turnleftframe12;
-    public Sprite turnleftframe13;
-    public Sprite turnleftframe14;
-    public Sprite turnleftframe15;
-    public Sprite turnleftframe16;
+    public Sprite[] turnleftframe;
+    public Sprite[] turnrightframe;
 
-    public Sprite turnrightframe1;
-    public Sprite turnrightframe2;
-    public Sprite turnrightframe3;
-    public Sprite turnrightframe4;
-    public Sprite turnrightframe5;
-    public Sprite turnrightframe6;
-    public Sprite turnrightframe7;
-    public Sprite turnrightframe8;
-    public Sprite turnrightframe9;
-    public Sprite turnrightframe10;
-    public Sprite turnrightframe11;
-    public Sprite turnrightframe12;
-    public Sprite turnrightframe13;
-    public Sprite turnrightframe14;
-    public Sprite turnrightframe15;
-    public Sprite turnrightframe16;
-
+    // fix this
     public GameObject TasksMain;
     public GameObject Tasks;
     public GameObject TasksMaintenance;
@@ -52,27 +21,16 @@ public class Night : MonoBehaviour
     public GameObject MotionDetector;
     public GameObject SilentVentilation;
 
-    public Sprite CircleFrame1;
-    public Sprite CircleFrame2;
-    public Sprite CircleFrame3;
-    public Sprite CircleFrame4;
-    public Sprite CircleFrame5;
-    public Sprite CircleFrame6;
-    public Sprite CircleFrame7;
-    public Sprite CircleFrame8;
-    public Sprite CircleFrame9;
-    public Sprite CircleFrame10;
+    public Sprite[] CircleFrame;
+
     public Sprite image;
     public Sprite image2;
     public Sprite ogimage;
     public Sprite ogimage2;
 
-    public Sprite fanframe1;
-    public Sprite fanframe2;
-    public Sprite fanframe3;
-    public Sprite fanframe4;
+    public Sprite[] fanframe;
 
-
+    // fix this
     public AudioSource Boop;
     GameObject buttontask;
     bool taskstarted;
@@ -220,7 +178,7 @@ public class Night : MonoBehaviour
         {
             if (position == 1 && turning == false)
             {
-                StartCoroutine("TurnLeft");
+                StartCoroutine("TurnLeft", 1);
                 position = 0;
                 turning = true;
                 screen.SetActive(false);
@@ -228,7 +186,7 @@ public class Night : MonoBehaviour
             }
             if (position == 2 && turning == false)
             {
-                StartCoroutine("TurnLeftBack");
+                StartCoroutine("TurnRight", -1);
                 position = 1;
                 turning = true;
 
@@ -283,7 +241,6 @@ public class Night : MonoBehaviour
                 {
                     Transform child = SilentVentilation.gameObject.transform.GetChild(2);
                     Transform child2 = SilentVentilation.gameObject.transform.GetChild(1);
-
                     child.GetComponent<Image>().sprite = ogimage;
                     child.transform.localScale = new Vector3(60, 90);
                     child.transform.localPosition = new Vector3(-6.9f, -100.5f);
@@ -292,7 +249,7 @@ public class Night : MonoBehaviour
                     child.gameObject.SetActive(true);
                     child.transform.GetChild(0).gameObject.SetActive(true);
                     child.GetComponent<Image>().color = new Color(child.GetComponent<Image>().color.r, child.GetComponent<Image>().color.g, child.GetComponent<Image>().color.b, 1);
-                    child2.GetComponent<Image>().sprite = fanframe1;
+                    child2.GetComponent<Image>().sprite = fanframe[0];
                 }
 
 
@@ -350,7 +307,7 @@ public class Night : MonoBehaviour
         {
             if (position == 1 && turning == false)
             {
-                StartCoroutine("TurnRight");
+                StartCoroutine("TurnRight", 1);
                 position = 2;
                 turning = true;
                 screen.SetActive(false);
@@ -358,7 +315,7 @@ public class Night : MonoBehaviour
             }
             if (position == 0 && turning == false)
             {
-                StartCoroutine("TurnRightBack");
+                StartCoroutine("TurnLeft", -1);
                 position = 1;
                 turning = true;
             }
@@ -380,199 +337,104 @@ public class Night : MonoBehaviour
         }
 
     }
-    IEnumerator TurnLeft()
+    IEnumerator TurnRight(int direction2)
     {
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe1;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe2;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe3;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe4;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe5;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe6;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe7;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe8;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe9;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe10;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe11;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe12;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe13;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe14;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe15;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe16;
+
+        int currentFrameIndex = 0;
+        if (direction2 == -1)
+        {
+            currentFrameIndex = turnrightframe.Length - 1;
+        }
+        Image imgcomp = GetComponent<Image>();
+        for (int i = 0; i < turnrightframe.Length; i++)
+        {
+            yield return new WaitForSeconds(0.025f);
+            imgcomp.sprite = turnrightframe[currentFrameIndex];
+
+            currentFrameIndex += direction2;
+
+            //// reverse after end
+            //if (currentFrameIndex >= turnleftframe.Length - 1 || currentFrameIndex < 0)
+            //{
+            //    direction *= -1;
+            //    currentFrameIndex += direction;
+            //}
+        }
         turning = false;
+        if (direction2 == -1)
+        {
+            imgcomp.sprite = defaultframe;
+            screen.SetActive(true);
+            BottomScreen.SetActive(true);
+        }
+
     }
-    IEnumerator TurnLeftBack()
+
+    IEnumerator TurnLeft(int direction2)
     {
-        gameObject.GetComponent<Image>().sprite = turnrightframe16;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe15;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe14;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe13;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe12;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe11;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe10;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe9;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe8;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe7;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe6;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe5;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe4;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe3;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe2;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe1;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = defaultframe;
-        screen.SetActive(true);
-        BottomScreen.SetActive(true);
+
+        int currentFrameIndex = 0;
+        if (direction2 == -1)
+        {
+            currentFrameIndex = turnleftframe.Length - 1;
+        }
+        Image imgcomp = GetComponent<Image>();
+        for (int i = 0; i < turnleftframe.Length; i++)
+        {
+            yield return new WaitForSeconds(0.025f);
+            imgcomp.sprite = turnleftframe[currentFrameIndex];
+
+            currentFrameIndex += direction2;
+
+        }
+        if (direction2 == -1)
+        {
+            imgcomp.sprite = defaultframe;
+            screen.SetActive(true);
+            BottomScreen.SetActive(true);
+        }
         turning = false;
-    }
-    IEnumerator TurnRight()
-    {
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe1;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe2;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe3;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe4;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe5;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe6;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe7;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe8;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe9;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe10;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe11;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe12;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe13;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe14;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe15;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnrightframe16;
-        turning = false;
-    }
-    IEnumerator TurnRightBack()
-    {
-        gameObject.GetComponent<Image>().sprite = turnleftframe16;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe15;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe14;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe13;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe12;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe11;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe10;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe9;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe8;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe7;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe6;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe5;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe4;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe3;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe2;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = turnleftframe1;
-        yield return new WaitForSeconds(0.019f);
-        gameObject.GetComponent<Image>().sprite = defaultframe;
-        screen.SetActive(true);
-        BottomScreen.SetActive(true);
-        turning = false;
+
     }
     IEnumerator CircleAnimation()
     {
-        while (intaskselection == true)
+        int currentFrameIndex = 0;
+        Image imgcomp = LoopingTaskCircle.GetComponent<Image>();
+        while (true)
         {
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame1;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame2;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame3;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame4;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame5;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame6;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame7;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame8;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame9;
-            yield return new WaitForSeconds(0.035f);
-            LoopingTaskCircle.GetComponent<Image>().sprite = CircleFrame10;
+            Debug.Log("test");
+            yield return new WaitForSeconds(0.05f);
+            imgcomp.sprite = CircleFrame[currentFrameIndex];
+
+            currentFrameIndex += 1;
+
+            if (currentFrameIndex >=  CircleFrame.Length)
+            {
+                currentFrameIndex = 0;
+            }
+
         }
 
     }
     IEnumerator FanAnimation()
     {
+        int currentFrameIndex = 0;
+        Image imgcomp = movingfan.GetComponent<Image>();
         while (activeuse == "silentvent")
         {
 
-            movingfan.GetComponent<Image>().sprite = fanframe1;
             yield return new WaitForSeconds(0.25f);
-            movingfan.GetComponent<Image>().sprite = fanframe2;
-            yield return new WaitForSeconds(0.25f);
-            movingfan.GetComponent<Image>().sprite = fanframe3;
-            yield return new WaitForSeconds(0.25f);
-            movingfan.GetComponent<Image>().sprite = fanframe4;
-            yield return new WaitForSeconds(0.25f);
+            Debug.Log("test");
+            imgcomp.sprite = fanframe[currentFrameIndex];
+
+            currentFrameIndex += 1;
+
+            // reverse after end
+            if (currentFrameIndex >= fanframe.Length)
+            {
+                currentFrameIndex = 0;
+            }
         }
 
     }
 }
-//END OF HORRIFIC CODE
-// it never ends
