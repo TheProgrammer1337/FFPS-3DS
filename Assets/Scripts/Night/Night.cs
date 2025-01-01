@@ -8,7 +8,7 @@ public class Night : MonoBehaviour
     public Sprite[] turnleftframe;
     public Sprite[] turnrightframe;
 
-    // fix this
+    // fix this //Dimolade: i dont know what this does just tell me in the dc and i might
     public GameObject TasksMain;
     public GameObject Tasks;
     public GameObject TasksMaintenance;
@@ -20,6 +20,8 @@ public class Night : MonoBehaviour
     public GameObject movingfan;
     public GameObject MotionDetector;
     public GameObject SilentVentilation;
+
+    public FFPSAI AIManager; //AI Logic
 
     public Sprite[] CircleFrame;
 
@@ -43,11 +45,6 @@ public class Night : MonoBehaviour
     bool insilentvent = true;
     public string activeuse;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
     public void ButtonClicked(GameObject button)
     {
         if (button.name == "Maintenance")
